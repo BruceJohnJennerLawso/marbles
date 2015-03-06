@@ -16,10 +16,11 @@
 
 int main()
 {
-    sf::RenderWindow window(sf::VideoMode(800, 800), "SFML works!");
+    sf::RenderWindow window(sf::VideoMode(800, 600), "Shaders");
 	sf::Texture planet_tex;
 	if(!planet_tex.loadFromFile("./earth.png"))
 	{	std::cout << "Unable to load planet png file" << std::endl;
+		return -1;
 	}
 	sf::Sprite planet_sprite;
 	planet_sprite.setTexture(planet_tex);
@@ -31,6 +32,7 @@ int main()
 	if(!shader.loadFromFile("./awesome.vert", "./awesome.frag"))
 	{	std::cout << "Unable to load shaders" << std::endl;
 		// error...
+		return -2;
 	}
 
     while (window.isOpen())
@@ -42,6 +44,7 @@ int main()
 		}
 		window.clear();
 		window.draw(planet_sprite, &shader);
+		//window.draw(planet_sprite);		
 		window.display();
     }
     return 0;
