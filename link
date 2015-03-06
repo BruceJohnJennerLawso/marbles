@@ -1,0 +1,5 @@
+#!/bin/bash
+
+g++ marbles.o -o marbles -lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio
+
+exit 0
