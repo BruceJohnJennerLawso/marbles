@@ -16,15 +16,17 @@
 
 int main()
 {
-    sf::RenderWindow window(sf::VideoMode(800, 600), "Shaders");
+    sf::RenderWindow window(sf::VideoMode(1000, 600), "Shaders");
 	sf::Texture planet_tex;
 	if(!planet_tex.loadFromFile("./earth.png"))
 	{	std::cout << "Unable to load planet png file" << std::endl;
 		return -1;
 	}
+	planet_tex.setRepeated(true	);
 	sf::Sprite planet_sprite;
 	planet_sprite.setTexture(planet_tex);
 	//planet_sprite.setPosition(sf::Vector2f(200,200));
+	planet_sprite.setScale(0.5, 0.5);
 	
 	 sf::Shader shader;
 
@@ -34,7 +36,14 @@ int main()
 		// error...
 		return -2;
 	}
-	shader.setParameter("resolution", sf::Vector2f(800, 600));
+	shader.setParameter("resolution", sf::Vector2f(1000, 600));
+	//shader.setParameter("resolution.x", 1000);
+	//shader.setParameter("resolution.y", 600);		
+	
+	// dont know why this dont work, b
+
+	sf::Clock clock;
+	float time = 0;
 
 	while (window.isOpen())
 	{	sf::Event event;
@@ -43,8 +52,10 @@ int main()
 			{	window.close();
 			}
 		}
+		
 		window.clear();
-		shader.setParameter("time", 0);
+		time += clock.restart().asSeconds()/10;
+		shader.setParameter("time", time);
 		
 		window.draw(planet_sprite, &shader);
 		//window.draw(planet_sprite);		
