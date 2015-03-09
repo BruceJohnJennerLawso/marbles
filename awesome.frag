@@ -1,6 +1,6 @@
 uniform vec2 resolution; // Screen resolution
 uniform float time; // time in seconds
-uniform sampler2D tex0; // scene buffer
+uniform sampler2D texture; // scene buffer
 void main(void)
 {
   vec2 tc = gl_TexCoord[0].xy;
@@ -11,5 +11,5 @@ void main(void)
   vec2 uv;
   uv.x = p.x*f + time;
   uv.y = p.y*f + time;
-  gl_FragColor = vec4(texture2D(tex0,uv).xyz, 1.0);
+  gl_FragColor = vec4(texture2D(texture,uv).xyz, 1.0);
 }
