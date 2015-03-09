@@ -26,7 +26,7 @@ int main()
 	sf::Sprite planet_sprite;
 	planet_sprite.setTexture(planet_tex);
 	//planet_sprite.setPosition(sf::Vector2f(200,200));
-	planet_sprite.setScale(0.5, 0.5);
+	planet_sprite.setScale(0.25, 0.25);
 	
 	 sf::Shader shader;
 
